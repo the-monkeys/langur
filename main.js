@@ -103,5 +103,37 @@ async function verifySignature(
   return { valid, body: JSON.parse(body) };
 }
 
+Deno.cron("Healthcheck cron", { minute: { every: 15 } }, async () => {
+  const url = Deno.env.get("WEBHOOK_URL");
+  try {
+    const res = await fetch("https://monkeys.support/healthz");
+    const data = await res.json();
+
+    if (res.status > 400 || data?.status !== "healthy") {
+      fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          "content": "Alert <@&1370882301877293147>. Server not responding",
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        "content": "Alert <@&1370882301877293147>. Server not responding",
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+});
+
 app.use(router.routes());
 app.listen();
+

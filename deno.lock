@@ -79,6 +79,7 @@
     "https://esm.sh/tweetnacl@v1.0.3?dts": "https://esm.sh/tweetnacl@1.0.3?dts"
   },
   "remote": {
+    "https://esm.sh/tweetnacl@1.0.3/denonext/tweetnacl.mjs": "2a972244e194f6e965cbe26ddc858dab7642621548d432d8f666b31f2b7c6d31",
     "https://esm.sh/tweetnacl@1.0.3?dts": "278caeeeb136b538b5839595306abfe0ed8e0263a990a446fd30d89aaef9a8c5"
   },
   "workspace": {
