@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "dev": "deno run -A --unstable-cron --watch main.ts"
+    "dev": "deno run -A --unstable-cron --watch main.js"
   },
   "imports": {
     "@oak/oak": "jsr:@oak/oak@^17.1.4"

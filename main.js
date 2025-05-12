@@ -10,7 +10,7 @@ router.get("/", (ctx, next) => {
 	return next();
 });
 
-router.post("/api", async (ctx) => {
+router.post("/api", async (ctx, next) => {
   if (!ctx.request.hasBody) {
     ctx.response.status = 400;
     ctx.response.type = "application/json";
