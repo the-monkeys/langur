@@ -1,4 +1,4 @@
-import { Application, Router } from "jsr:@oak/oak";
+import { Application, Router } from "@oak/oak";
 import nacl from "https://esm.sh/tweetnacl@v1.0.3?dts";
 
 const app = new Application();
@@ -14,7 +14,7 @@ router.post("/api", async (ctx) => {
     ctx.response.status = 400;
     ctx.response.type = "application/json";
     ctx.response.body = { message: "Hello Oak!" };
-    return;
+    return next();
   }
 
   const { valid, body } = await verifySignature(ctx.request);
@@ -23,14 +23,14 @@ router.post("/api", async (ctx) => {
     ctx.response.status = 400;
     ctx.response.type = "application/json";
     ctx.response.body = { message: "Hello, Oak!" };
-    return;
+    return next();
   }
 
   if (body.type == 1) {
     ctx.response.status = 200;
     ctx.response.type = "application/json";
     ctx.response.body = { type: 1 };
-    return;
+    return next();
   }
 
   if (body.type == 2) {
@@ -77,7 +77,7 @@ router.post("/api", async (ctx) => {
     }
   }
 
-  return;
+  return next();
 });
 
 function hexToUint8Array(hex) {
