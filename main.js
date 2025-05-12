@@ -5,8 +5,9 @@ const app = new Application();
 
 const router = new Router();
 
-router.get("/", (ctx) => {
+router.get("/", (ctx, next) => {
   ctx.response.body = "healthy";
+	return next();
 });
 
 router.post("/api", async (ctx) => {
